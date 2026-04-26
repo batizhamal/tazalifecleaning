@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { trackContact } from '@/lib/analytics';
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -43,6 +44,7 @@ export default function FloatingContacts() {
     <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 border-t border-slate-200 bg-white shadow-[0_-4px_12px_rgba(0,0,0,0.08)] md:hidden">
       <a
         href={`tel:${phone}`}
+        onClick={() => trackContact('phone')}
         className="flex items-center justify-center gap-2 bg-brand-blue py-3 text-sm font-semibold text-white"
       >
         <PhoneIcon className="h-5 w-5" />
@@ -52,6 +54,7 @@ export default function FloatingContacts() {
         href={whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackContact('whatsapp')}
         className="flex items-center justify-center gap-2 bg-brand-green py-3 text-sm font-semibold text-white"
       >
         <WhatsAppIcon className="h-5 w-5" />

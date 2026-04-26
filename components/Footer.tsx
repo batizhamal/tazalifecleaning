@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
+import ContactLink from './ContactLink';
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -98,7 +99,8 @@ export default function Footer() {
             </div>
 
             <div className="flex items-center gap-3 pt-1">
-              <a
+              <ContactLink
+                method="whatsapp"
                 href={whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -106,7 +108,7 @@ export default function Footer() {
                 className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
               >
                 <WhatsAppIcon className="h-5 w-5" />
-              </a>
+              </ContactLink>
               <a
                 href={instagramUrl}
                 target="_blank"
@@ -124,18 +126,20 @@ export default function Footer() {
               <p className="text-xs font-semibold uppercase tracking-wider text-white/50">
                 {t('phonesLabel')}
               </p>
-              <a
+              <ContactLink
+                method="phone"
                 href={`tel:${phone}`}
                 className="text-lg font-semibold text-white transition-opacity hover:opacity-80"
               >
                 {phoneDisplay}
-              </a>
-              <a
+              </ContactLink>
+              <ContactLink
+                method="phone"
                 href={`tel:${phoneSecondary}`}
                 className="text-lg font-semibold text-white transition-opacity hover:opacity-80"
               >
                 {phoneSecondaryDisplay}
-              </a>
+              </ContactLink>
             </div>
 
             <div className="flex items-center gap-2 text-sm text-white/70">

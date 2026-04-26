@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { StaggerContainer, StaggerItem } from './AnimatedSection';
 import HeroImage from './HeroImage';
+import ContactLink from './ContactLink';
 
 const STAT_KEYS = ['coverage', 'eco', 'guarantee'] as const;
 
@@ -87,29 +88,32 @@ export default function Hero() {
 
             <StaggerItem>
               <div className="mt-2 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap md:items-start md:justify-start">
-                <a
+                <ContactLink
+                  method="phone"
                   href={`tel:${phone}`}
                   className="inline-flex items-center gap-1.5 text-base font-semibold text-slate-900 transition-colors hover:text-brand-blue sm:text-lg"
                 >
                   <PhoneIcon className="h-4 w-4 text-brand-blue" />
                   {phoneDisplay}
-                </a>
+                </ContactLink>
                 <span className="hidden text-slate-300 sm:inline" aria-hidden>
                   ·
                 </span>
-                <a
+                <ContactLink
+                  method="phone"
                   href={`tel:${phoneSecondary}`}
                   className="inline-flex items-center gap-1.5 text-base font-semibold text-slate-900 transition-colors hover:text-brand-blue sm:text-lg"
                 >
                   <PhoneIcon className="h-4 w-4 text-brand-blue" />
                   {phoneSecondaryDisplay}
-                </a>
+                </ContactLink>
               </div>
             </StaggerItem>
 
             <StaggerItem>
               <div className="mt-1 flex justify-center md:justify-start">
-                <a
+                <ContactLink
+                  method="whatsapp"
                   href={whatsappLink}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -117,7 +121,7 @@ export default function Hero() {
                 >
                   <WhatsAppIcon className="h-5 w-5" />
                   {t('whatsappButton')}
-                </a>
+                </ContactLink>
               </div>
             </StaggerItem>
           </StaggerContainer>

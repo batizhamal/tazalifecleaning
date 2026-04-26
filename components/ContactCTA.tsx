@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { StaggerContainer, StaggerItem } from './AnimatedSection';
+import ContactLink from './ContactLink';
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -78,7 +79,8 @@ export default function ContactCTA() {
 
           <StaggerItem>
             <div className="mx-auto mt-8 flex max-w-md flex-col items-stretch gap-3">
-              <a
+              <ContactLink
+                method="whatsapp"
                 href={whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -86,7 +88,7 @@ export default function ContactCTA() {
               >
                 <WhatsAppIcon className="h-5 w-5" />
                 {t('whatsappButton')}
-              </a>
+              </ContactLink>
               <a
                 href={instagramUrl}
                 target="_blank"
@@ -105,20 +107,22 @@ export default function ContactCTA() {
                 {t('phonesLabel')}
               </p>
               <div className="mt-3 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8">
-                <a
+                <ContactLink
+                  method="phone"
                   href={`tel:${phone}`}
                   className="inline-flex items-center gap-2 text-lg font-semibold transition-opacity hover:opacity-80 sm:text-xl"
                 >
                   <PhoneIcon className="h-5 w-5" />
                   {phoneDisplay}
-                </a>
-                <a
+                </ContactLink>
+                <ContactLink
+                  method="phone"
                   href={`tel:${phoneSecondary}`}
                   className="inline-flex items-center gap-2 text-lg font-semibold transition-opacity hover:opacity-80 sm:text-xl"
                 >
                   <PhoneIcon className="h-5 w-5" />
                   {phoneSecondaryDisplay}
-                </a>
+                </ContactLink>
               </div>
             </div>
           </StaggerItem>
