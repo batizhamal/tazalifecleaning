@@ -3,6 +3,7 @@ module.exports = {
   siteUrl: process.env.SITE_URL || 'https://tazalife.kz',
   generateRobotsTxt: true,
   sitemapSize: 5000,
+  outDir: './out',
   alternateRefs: [
     {
       href: 'https://tazalife.kz/ru',

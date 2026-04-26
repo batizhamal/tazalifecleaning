@@ -1,3 +1,4 @@
+import { unstable_setRequestLocale } from 'next-intl/server';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
@@ -11,7 +12,9 @@ import ContactCTA from '@/components/ContactCTA';
 import Footer from '@/components/Footer';
 import FloatingContacts from '@/components/FloatingContacts';
 
-export default function HomePage() {
+export default function HomePage({ params: { locale } }: { params: { locale: string } }) {
+  unstable_setRequestLocale(locale);
+
   return (
     <>
       <Navbar />
