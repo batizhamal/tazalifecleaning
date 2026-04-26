@@ -13,11 +13,19 @@ export default function MobileMenu({ links, openLabel, closeLabel }: MobileMenuP
 
   useEffect(() => {
     if (!open) return;
+
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setOpen(false);
     };
     window.addEventListener('keydown', handleEsc);
-    return () => window.removeEventListener('keydown', handleEsc);
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = previousOverflow;
+    };
   }, [open]);
 
   return (
@@ -48,16 +56,21 @@ export default function MobileMenu({ links, openLabel, closeLabel }: MobileMenuP
       </button>
 
       {open && (
-        <div
-          className="fixed inset-0 z-50 bg-black/40 md:hidden"
-          onClick={() => setOpen(false)}
-          aria-hidden
-        >
+        <>
+          <button
+            type="button"
+            aria-label={closeLabel}
+            onClick={() => setOpen(false)}
+            className="fixed inset-0 z-[55] cursor-default bg-slate-900/60 md:hidden"
+          />
+
           <div
-            className="absolute right-0 top-0 h-full w-72 max-w-[85%] bg-white p-6 shadow-xl"
-            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            style={{ height: '100dvh' }}
+            className="fixed right-0 top-0 z-[60] flex w-[85%] max-w-sm flex-col bg-white shadow-2xl md:hidden"
           >
-            <div className="mb-6 flex items-center justify-end">
+            <div className="flex h-16 shrink-0 items-center justify-end border-b border-slate-100 px-4">
               <button
                 type="button"
                 onClick={() => setOpen(false)}
@@ -81,20 +94,24 @@ export default function MobileMenu({ links, openLabel, closeLabel }: MobileMenuP
                 </svg>
               </button>
             </div>
-            <nav className="flex flex-col gap-4" aria-label="Mobile">
+
+            <nav
+              className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto px-4 py-6"
+              aria-label="Mobile"
+            >
               {links.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="text-base font-medium text-slate-800 hover:text-brand-blue"
+                  className="rounded-md px-3 py-3 text-base font-medium text-slate-800 transition-colors hover:bg-slate-50 hover:text-brand-blue"
                 >
                   {link.label}
                 </a>
               ))}
             </nav>
           </div>
-        </div>
+        </>
       )}
     </>
   );
