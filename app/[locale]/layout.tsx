@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales, type Locale } from '@/i18n';
+import Analytics from '@/components/Analytics';
 import '../globals.css';
 
 const inter = Inter({
@@ -160,6 +161,7 @@ export default async function LocaleLayout({ children, params: { locale } }: Lay
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
