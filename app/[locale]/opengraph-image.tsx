@@ -107,7 +107,7 @@ export default async function OpengraphImage({
             <span style={{ opacity: 0.6 }}>·</span>
             <span>{c('city')}</span>
           </div>
-          <div style={{ opacity: 0.85 }}>tazalife.kz</div>
+          <div style={{ opacity: 0.85 }}>www.tazalifecleaning.kz</div>
         </div>
       </div>
     ),

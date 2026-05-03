@@ -13,7 +13,7 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-const SITE_URL = 'https://tazalife.kz';
+const SITE_URL = 'https://www.tazalifecleaning.kz';
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));

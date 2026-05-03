@@ -149,8 +149,16 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
-          <p>{t('copyright')}</p>
+        <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+            <p>{t('copyright')}</p>
+            <Link
+              href={`/${locale}/privacy`}
+              className="text-white/70 underline-offset-2 transition-opacity hover:text-white hover:underline"
+            >
+              {t('privacyLink')}
+            </Link>
+          </div>
           <p className="max-w-md sm:text-right">{t('seoText')}</p>
         </div>
       </div>

@@ -1,7 +1,8 @@
 'use client';
 
+import type { MouseEvent } from 'react';
 import { useTranslations } from 'next-intl';
-import { trackContact } from '@/lib/analytics';
+import { trackContact, trackContactClick } from '@/lib/analytics';
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -40,11 +41,32 @@ export default function FloatingContacts() {
   const phone = c('phone');
   const whatsappLink = c('whatsappLink');
 
+  const isModifiedClick = (e: MouseEvent<HTMLAnchorElement>) =>
+    e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey;
+
+  const handlePhoneClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    if (isModifiedClick(e)) {
+      trackContact('phone');
+      return;
+    }
+    e.preventDefault();
+    trackContactClick('phone', `tel:${phone}`, '_self');
+  };
+
+  const handleWhatsappClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    if (isModifiedClick(e)) {
+      trackContact('whatsapp');
+      return;
+    }
+    e.preventDefault();
+    trackContactClick('whatsapp', whatsappLink, '_blank');
+  };
+
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 border-t border-slate-200 bg-white shadow-[0_-4px_12px_rgba(0,0,0,0.08)] md:hidden">
       <a
         href={`tel:${phone}`}
-        onClick={() => trackContact('phone')}
+        onClick={handlePhoneClick}
         className="flex items-center justify-center gap-2 bg-brand-blue py-3 text-sm font-semibold text-white"
       >
         <PhoneIcon className="h-5 w-5" />
@@ -54,7 +76,7 @@ export default function FloatingContacts() {
         href={whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={() => trackContact('whatsapp')}
+        onClick={handleWhatsappClick}
         className="flex items-center justify-center gap-2 bg-brand-green py-3 text-sm font-semibold text-white"
       >
         <WhatsAppIcon className="h-5 w-5" />
