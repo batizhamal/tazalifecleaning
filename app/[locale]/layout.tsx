@@ -67,10 +67,10 @@ export async function generateMetadata({
 }
 
 const PRICING_ITEMS = [
-  { key: 'regular', price: 300 },
-  { key: 'general', price: 700 },
-  { key: 'renovation', price: 800 },
-  { key: 'movein', price: 700 },
+  { key: 'regular', price: 600 },
+  { key: 'general', price: 800 },
+  { key: 'renovation', price: 1000 },
+  { key: 'movein', price: 800 },
 ] as const;
 
 async function buildJsonLd(locale: string) {
